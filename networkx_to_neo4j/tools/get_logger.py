@@ -1,6 +1,6 @@
 import os.path
 
-from my_log.my_logger import MyLogger
+from .my_logger import MyLogger
 
 level = 'INFO'
 path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../logs')
