@@ -1,0 +1,17 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# other ignore files
+key.py
+networkx_to_neo4j/exception.py
+networkx_to_neo4j/lazy_imports.py
+
+# data directory
+/networkx_to_neo4j/logs/
+/networkx_to_neo4j/old_ver/
