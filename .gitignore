@@ -10,14 +10,15 @@ gen
 # other ignore files
 key.py
 setup.py
+pytest.ini
+
 networkx_to_neo4j/exception.py
 networkx_to_neo4j/lazy_imports.py
 
 
 # data directory
-/.pytest_cache/
-/build/
-/dist/
-/networkx_to_neo4j.egg-info/
-/networkx_to_neo4j/logs/
-/networkx_to_neo4j/old_ver/
+.pytest_cache
+build
+dist
+networkx_to_neo4j/logs
+networkx_to_neo4j/old_ver
