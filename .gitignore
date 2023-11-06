@@ -20,5 +20,6 @@ networkx_to_neo4j/lazy_imports.py
 .pytest_cache
 build
 dist
+networkx_to_neo4j.egg-info
 networkx_to_neo4j/logs
 networkx_to_neo4j/old_ver

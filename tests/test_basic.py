@@ -2,8 +2,8 @@
 import networkx as nx
 
 from key import neo4j_connect_config
-from networkx_to_neo4j.auto_loader import AutoLoader
-from ..tools.other_tools.my_matplotlib_plot import plot_directed_with_plt
+from auto_loader import AutoLoader
+from tools.other_tools.my_matplotlib_plot import plot_directed_with_plt
 
 USERNAME = neo4j_connect_config['USERNAME']
 PASSWORD = neo4j_connect_config['PASSWORD']

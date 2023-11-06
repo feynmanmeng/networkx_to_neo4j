@@ -4,32 +4,6 @@ import pandas as pd
 
 from ..get_logger import logger
 
-...
-'''
-# 从Pandas.DataFrame中导入
-# https://www.osgeo.cn/networkx/reference/generated/networkx.convert_matrix.from_pandas_edgelist.html
-G = nx.convert_matrix.from_pandas_edgelist(sub_df_edge, 'src', 'dst', ['timestamp','amount','issar'])
-# 将networkx图转为DataFrame，以边的形式保存
-df_edge_kcore = nx.convert_matrix.to_pandas_edgelist(G, 'src', 'dst')
-
-4种类型：
-| Networkx Class | Type       | Self-loops allowed | Parallel edges allowed |
-| :------------- | :--------- | :----------------- | :--------------------- |
-| Graph          | undirected | Yes                | No                     |
-| DiGraph        | directed   | Yes                | No                     |
-| MultiGraph     | undirected | Yes                | Yes                    |
-| MultiDiGraph   | directed   | Yes                | Yes                    |
-
-
-Layout:
-    circular_layout：节点在一个圆环上均匀分布
-    random_layout：节点随机分布
-    shell_layout：节点在同心圆上分布
-    spring_layout： 用Fruchterman-Reingold算法排列节点(多中心放射状)
-    spectral_layout：根据图的拉普拉斯特征向量排列节
-'''
-
-
 def plot_directed_with_plt(
         G: {nx.Graph, nx.DiGraph, nx.MultiGraph, nx.MultiDiGraph},
         df_edges: pd.DataFrame = None,
@@ -93,11 +67,22 @@ def _plot_nx_mdg(
 ):
     '''
     Layout:
-        circular_layout：节点在一个圆环上均匀分布
-        random_layout：节点随机分布
-        shell_layout：节点在同心圆上分布
-        spring_layout： 用Fruchterman-Reingold算法排列节点(多中心放射状)
-        spectral_layout：根据图的拉普拉斯特征向量排列节
+        spring_layout
+            弹簧布局算法是一种基于力导向的布局方法。它模拟了节点之间的弹簧和斥力，使得节点之间的距离趋于平衡，从而形成一个相对均匀的布局。
+        circular_layout
+            环形布局算法将节点按照圆形排列，使得节点之间的距离相等，节点在环上均匀分布。
+        random_layout
+            随机布局算法是一种简单的布局方法，它随机地将节点放置在图的平面上，没有特定的布局结构。
+        shell_layout
+            类似于环形布局的布局算法，但是节点会被分为多层。每一层都是一个环，节点按照环的顺序排列。
+        kamada_kawai_layout
+            基于牛顿迭代法的布局算法，它通过最小化节点之间的势能来确定节点的位置。该算法考虑了节点之间的连接关系和距离，以使得图的结构更加清晰。
+        fruchterman_reingold_layout
+            基于牛顿迭代法的布局算法，它通过模拟节点之间的斥力和弹簧力来确定节点的位置。该算法通过最小化节点之间的总能量来达到平衡状态。
+        spectral_layout
+            基于图的特征向量的布局算法，它使用图的拉普拉斯矩阵的特征向量来确定节点的位置。该算法考虑了节点之间的相似性和连接关系。
+        planar_layout
+            基于欧拉回路的平面布局算法，它将图投影到二维平面上，并保持节点之间的连接关系和边的交叉数最小化。该算法可以用于可平面图的布局。
 
     '''
     plt.figure(dpi=dpi, figsize=figsize)
@@ -106,16 +91,22 @@ def _plot_nx_mdg(
 
     if layout is None:
         pos = nx.spring_layout(G)
+    elif layout == 'spring':
+        pos = nx.spring_layout(G)
     elif layout == 'circular':
         pos = nx.circular_layout(G)
     elif layout == 'random':
         pos = nx.random_layout(G)
     elif layout == 'shell':
         pos = nx.shell_layout(G)
+    elif layout == 'kamada_kawai':
+        pos = nx.kamada_kawai_layout(G)
+    elif layout == 'fruchterman_reingold':
+        pos = nx.fruchterman_reingold_layout(G)
     elif layout == 'spectral':
         pos = nx.spectral_layout(G)
-    elif layout == 'spring':
-        pos = nx.spring_layout(G)
+    elif layout == 'planar':
+        pos = nx.planar_layout(G)
     else:
         logger.error("wrong layout")
         return

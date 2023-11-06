@@ -6,10 +6,10 @@ import py2neo
 from my_networkx.convert import nx_to_nodes_edges
 from py2neo import Graph
 
-from .tools.get_logger import logger
-from .tools.neo4j_add_edges import autorun_add_edges
-from .tools.neo4j_add_nodes import autorun_add_nodes
-from .tools.neo4j_clear import autorun_clear
+from tools.get_logger import logger
+from tools.neo4j_add_edges import autorun_add_edges
+from tools.neo4j_add_nodes import autorun_add_nodes
+from tools.neo4j_clear import autorun_clear
 
 
 class AutoLoader:
@@ -28,9 +28,9 @@ class AutoLoader:
     def __init__(self):
         self.config = {
             'USERNAME': 'neo4j',
-            'PASSWORD': 'feynmanneo4j',
+            'PASSWORD': 'Feynmanmeng',
             'DATABASE': 'neo4j',
-            'PORT': '7695'
+            'PORT': '7442'
         }
         self.graph = None
 
@@ -43,10 +43,10 @@ class AutoLoader:
 
     def connect_to_neo4j(self, username, password, database, port):
         '''
-        username = 'neo4j'
-        password = 'feynmanneo4j'
-        database = 'neo4j'
-        port = '7695'
+        USERNAME = 'neo4j'
+        PASSWORD = 'Feynmanmeng'
+        DATABASE = 'neo4j'
+        PORT = '7442'
         '''
         self.graph = Graph(f"neo4j://localhost:{port}/", auth=(username, password), name=database)
         try:
