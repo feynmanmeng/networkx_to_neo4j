@@ -9,9 +9,10 @@ gen
 
 # other ignore files
 key.py
+setup.py
 networkx_to_neo4j/exception.py
 networkx_to_neo4j/lazy_imports.py
-setup.py
+
 
 # data directory
 /.pytest_cache/

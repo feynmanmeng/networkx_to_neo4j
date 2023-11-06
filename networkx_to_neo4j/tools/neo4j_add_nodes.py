@@ -119,7 +119,7 @@ def autorun_add_nodes(graph, data, n_label='ACCOUNT', r_label='TRANS', n_thread=
     # 等待所有线程完成
     for t in threads:
         t.join()
-    logger.info("退出主线程")
+    # logger.info("退出主线程")
 
     t2 = time.time()
     logger.info("【节点导入】耗时：{0} s".format((t2 - t1) * 1))

@@ -13,6 +13,18 @@ from .tools.neo4j_clear import autorun_clear
 
 
 class AutoLoader:
+    '''
+    说明：
+     - 连接neo4j数据库
+        connect_to_neo4j(username, password, database, port)
+
+     - 将 G:nx.MultiDiGraph导入到neo4j数据库
+        load_to_neo4j(G, nodes, edges, n_label, r_label, n_thread, batch_size)
+
+     - 在neo4j中执行cyhper语句
+        run_cyhper(cyhper, ret_data)
+    '''
+
     def __init__(self):
         self.config = {
             'USERNAME': 'neo4j',
@@ -110,4 +122,6 @@ class AutoLoader:
         autorun_add_edges(self.graph, data=edges,
                           n_label=n_label, r_label=r_label, n_thread=n_thread, batch_size=batch_size)
 
-        logger.info('导入流程结束')
+        logger.info(f'导入流程结束。\n'
+                    f'计划导入节点数量：{G.number_of_nodes()}，实际导入节点数量：{self.graph.nodes.match().count()}\n'
+                    f'计划导入边数量：{G.number_of_edges()}，实际导入边数量：{self.graph.relationships.match().count()}')

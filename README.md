@@ -1,7 +1,9 @@
-# networkx_to_neo4j
+# networkx-to-neo4j
 
 将networkx中的图导入到neo4j。
 
+
+后续：不一定要清空原有数据库，可以增加，或者增量增加
 
 
 示例：
